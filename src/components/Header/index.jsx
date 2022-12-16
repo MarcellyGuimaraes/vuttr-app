@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ModalAdd from '../ModalAdd'
 
-const Header = ({ searchQuery, handleSearch, refresh }) => {
+const Header = ({ searchQuery, handleSearch, setTools }) => {
   const [show, setShow] = useState(false)
   const [modal, setModal] = useState()
 
@@ -45,7 +45,11 @@ const Header = ({ searchQuery, handleSearch, refresh }) => {
         </button>
       </div>
 
-      <ModalAdd refresh={refresh} show={show} onClose={() => setShow(false)} />
+      <ModalAdd
+        setTools={setTools}
+        show={show}
+        onClose={() => setShow(false)}
+      />
     </div>
   )
 }

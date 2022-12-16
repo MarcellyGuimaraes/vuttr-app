@@ -1,20 +1,14 @@
-import axios from 'axios'
 import React from 'react'
 
-const ModalRemove = ({ show, onClose, id, name, refresh }) => {
+const ModalRemove = ({ show, onClose, id, name, setTools }) => {
   if (!show) {
     return null
   }
 
   const removeItem = () => {
-    axios
-      .delete(
-        `https://my-json-server.typicode.com/MarcellyGuimaraes/vuttr-app-api/tools/${id}`,
-      )
-      .then(() => {
-        refresh()
-        onClose()
-      })
+    setTools((prev) => prev.filter((x) => x.id !== id))
+    console.log(setTools)
+    onClose()
   }
 
   return (

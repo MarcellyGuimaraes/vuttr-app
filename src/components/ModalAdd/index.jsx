@@ -1,7 +1,6 @@
-import axios from 'axios'
 import React, { useState } from 'react'
 
-const ModalAdd = ({ show, onClose, refresh }) => {
+const ModalAdd = ({ show, onClose, setTools }) => {
   if (!show) {
     return null
   }
@@ -12,20 +11,18 @@ const ModalAdd = ({ show, onClose, refresh }) => {
   const [tags, setTags] = useState('')
 
   const addItem = () => {
-    axios
-      .post(
-        `https://my-json-server.typicode.com/MarcellyGuimaraes/vuttr-app-api/tools`,
+    setTools(
+      (prev) => [
+        ...prev,
         {
           title: nome,
           link: link,
           description: descricao,
           tags: tags.split(' '),
         },
-      )
-      .then(() => {
-        refresh()
-        onClose()
-      })
+      ],
+      onClose(),
+    )
   }
 
   return (
