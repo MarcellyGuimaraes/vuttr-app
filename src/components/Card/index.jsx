@@ -6,7 +6,7 @@ const Card = ({ title, description, tags, card_id, setTools }) => {
   const [modal, setModal] = useState()
 
   return (
-    <div className="mx-14 w-[60vw] mb-5 border-2 p-10">
+    <div className="mx-14 w-[60vw] mb-5 border-2 bg-white p-10">
       <div className="block md:flex md:justify-between">
         <h1 className="text-xl pb-3 font-extrabold">{title}</h1>
         <button

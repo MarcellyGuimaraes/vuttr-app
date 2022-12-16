@@ -36,7 +36,7 @@ function App() {
   }
 
   return (
-    <div className="grid h-5/6 place-items-center">
+    <div className="grid h-5/6 bg-gray-200 place-items-center">
       <Header
         setTools={setTools}
         refresh={init}
