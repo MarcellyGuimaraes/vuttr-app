@@ -7,10 +7,14 @@ const ModalRemove = ({ show, onClose, id, name, refresh }) => {
   }
 
   const removeItem = () => {
-    axios.delete(`http://localhost:3000/tools/${id}`).then(() => {
-      refresh()
-      onClose
-    })
+    axios
+      .delete(
+        `https://my-json-server.typicode.com/MarcellyGuimaraes/vuttr-app-api/tools/${id}`,
+      )
+      .then(() => {
+        refresh()
+        onClose()
+      })
   }
 
   return (

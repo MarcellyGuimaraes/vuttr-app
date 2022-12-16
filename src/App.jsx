@@ -10,9 +10,13 @@ function App() {
 
   // Pegando dados do data.json
   const init = async () => {
-    await axios.get('http://localhost:3000/tools').then((response) => {
-      setTools(response.data)
-    })
+    await axios
+      .get(
+        'https://my-json-server.typicode.com/MarcellyGuimaraes/vuttr-app-api/tools',
+      )
+      .then((response) => {
+        setTools(response.data)
+      })
   }
   useEffect(() => {
     init()

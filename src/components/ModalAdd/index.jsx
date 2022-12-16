@@ -13,12 +13,15 @@ const ModalAdd = ({ show, onClose, refresh }) => {
 
   const addItem = () => {
     axios
-      .post(`http://localhost:3000/tools`, {
-        title: nome,
-        link: link,
-        description: descricao,
-        tags: tags.split(' '),
-      })
+      .post(
+        `https://my-json-server.typicode.com/MarcellyGuimaraes/vuttr-app-api/tools`,
+        {
+          title: nome,
+          link: link,
+          description: descricao,
+          tags: tags.split(' '),
+        },
+      )
       .then(() => {
         refresh()
         onClose()
