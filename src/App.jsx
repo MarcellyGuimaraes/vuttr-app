@@ -34,8 +34,8 @@ function App() {
   return (
     <div className="grid h-5/6 place-items-center">
       <Header
-        searchQuery={searchQuery}
         refresh={init}
+        searchQuery={searchQuery}
         handleSearch={handleSearch}
       />
 

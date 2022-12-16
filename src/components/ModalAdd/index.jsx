@@ -20,8 +20,8 @@ const ModalAdd = ({ show, onClose, refresh }) => {
         tags: tags.split(' '),
       })
       .then(() => {
-        onClose
         refresh()
+        onClose()
       })
   }
 
