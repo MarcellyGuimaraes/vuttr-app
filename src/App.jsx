@@ -11,12 +11,7 @@ function App() {
 
   // Pegando dados do data.json
   const init = async () => {
-    await api
-      .get('/tools')
-      .then((response) => setTools(response.data))
-      .catch((err) => {
-        console.error('Alguma coisa deu errado:' + err)
-      })
+    await api.get('/tools').then((response) => setTools(response.data))
   }
   useEffect(() => {
     init()
@@ -39,7 +34,7 @@ function App() {
     <div className="grid h-5/6 bg-gray-200 place-items-center">
       <AppProvider>
         <Header
-          // setTools={setTools}
+          // setTools={setTools}r
           refresh={init}
           searchQuery={searchQuery}
           handleSearch={handleSearch}
@@ -57,6 +52,7 @@ function App() {
               ))
             : tools.map((tool) => (
                 <Card
+                  id={tool.id}
                   key={tool.id}
                   title={tool.title}
                   description={tool.description}
