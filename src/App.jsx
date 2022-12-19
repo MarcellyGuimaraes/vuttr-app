@@ -15,7 +15,7 @@ function App() {
       .get('/tools')
       .then((response) => setTools(response.data))
       .catch((err) => {
-        console.error('ops! ocorreu um erro' + err)
+        console.error('Alguma coisa deu errado:' + err)
       })
   }
   useEffect(() => {
@@ -49,9 +49,6 @@ function App() {
           {searchQuery
             ? filteredList.map((tool) => (
                 <Card
-                  setTools={setTools}
-                  refresh={init}
-                  card_id={tool.id}
                   key={tool.id}
                   title={tool.title}
                   description={tool.description}
@@ -60,9 +57,6 @@ function App() {
               ))
             : tools.map((tool) => (
                 <Card
-                  setTools={setTools}
-                  refresh={init}
-                  card_id={tool.id}
                   key={tool.id}
                   title={tool.title}
                   description={tool.description}

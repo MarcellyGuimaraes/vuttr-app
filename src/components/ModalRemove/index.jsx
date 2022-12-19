@@ -1,17 +1,17 @@
 import React, { useContext } from 'react'
 import AppContext from '../../AppContext/Context'
 
-const ModalRemove = ({ show, onClose, id, name, setTools }) => {
+const ModalRemove = ({ show, onClose, id, name }) => {
+  const { deleteTool } = useContext(AppContext)
+
   if (!show) {
     return null
   }
 
   const removeItem = () => {
-    setTools((prev) => prev.filter((x) => x.id !== id))
+    deleteTool(id)
     onClose()
   }
-
-  const { user } = useContext(AppContext)
 
   return (
     <>
@@ -25,7 +25,7 @@ const ModalRemove = ({ show, onClose, id, name, setTools }) => {
             <div className="mt-3 sm:flex">
               <div className="p-6 text-center">
                 <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                  Tem certeza que quer deletar {name}? {user}
+                  Tem certeza que quer deletar {name}?
                 </h3>
                 <button
                   data-modal-toggle="popup-modal"

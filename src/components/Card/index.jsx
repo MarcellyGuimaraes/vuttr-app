@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ModalRemove from '../ModalRemove'
 
-const Card = ({ title, description, tags, card_id, setTools }) => {
+const Card = ({ title, description, tags }) => {
   const [show, setShow] = useState(false)
   const [modal, setModal] = useState()
 
@@ -21,22 +21,16 @@ const Card = ({ title, description, tags, card_id, setTools }) => {
       </div>
       <div>
         <p>{description}</p>
-        {tags.map((tag) => (
+        {/* {tags.map((tag) => (
           <span
             className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
             key={tag}
           >
             {tag}
           </span>
-        ))}
+        ))} */}
       </div>
-      <ModalRemove
-        setTools={setTools}
-        id={card_id}
-        name={title}
-        show={show}
-        onClose={() => setShow(false)}
-      />
+      <ModalRemove name={title} show={show} onClose={() => setShow(false)} />
     </div>
   )
 }
