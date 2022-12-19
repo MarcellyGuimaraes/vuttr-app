@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import api from '../api'
+import api from '../../api'
 import AppContext from './Context'
 
 const AppProvider = ({ children }) => {
@@ -10,7 +10,7 @@ const AppProvider = ({ children }) => {
   }, [])
 
   const fetchTools = async () => {
-    const response = await api.get('/tools')
+    const response = await api.get
     setTools(response.data)
   }
 

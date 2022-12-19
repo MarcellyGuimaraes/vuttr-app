@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import AppContext from '../../AppContext/Context'
+import AppContext from '../AppContext/Context'
 
 const ModalRemove = ({ show, onClose, id, name }) => {
   const { deleteTool } = useContext(AppContext)

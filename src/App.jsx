@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import api from './api'
-import AppProvider from './AppContext/Provider'
+import AppProvider from './components/AppContext/Provider'
 import Card from './components/Card'
 import Header from './components/Header'
 

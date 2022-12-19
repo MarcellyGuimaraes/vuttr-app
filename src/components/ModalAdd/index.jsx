@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import AppContext from '../../AppContext/Context'
+import AppContext from '../AppContext/Context'
 
 const ModalAdd = ({ show, onClose }) => {
   if (!show) {
