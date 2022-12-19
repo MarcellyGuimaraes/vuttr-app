@@ -1,28 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import AppContext from '../../AppContext/Context'
 
 const ModalAdd = ({ show, onClose, setTools }) => {
   if (!show) {
     return null
   }
 
-  const [nome, setNome] = useState('')
-  const [descricao, setDescricao] = useState('')
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
   const [link, setLink] = useState('')
   const [tags, setTags] = useState('')
+  const { addTool } = useContext(AppContext)
+
+  const newTool = { title, description, link, tags: tags.split(' ') }
 
   const addItem = () => {
-    setTools(
-      (prev) => [
-        ...prev,
-        {
-          title: nome,
-          link: link,
-          description: descricao,
-          tags: tags.split(' '),
-        },
-      ],
-      onClose(),
-    )
+    addTool(newTool)
+    // setTools(
+    //   (prev) => [
+    //     ...prev,
+    //     {
+    //       title: name,
+    //       link: link,
+    //       description: description,
+    //       tags: tags.split(' '),
+    //     },
+    //   ],
+    //   )
+    onClose()
   }
 
   return (
@@ -40,11 +45,11 @@ const ModalAdd = ({ show, onClose, setTools }) => {
               </h3>
               <form className="space-y-6">
                 <div>
-                  <label>Nome da ferramenta</label>
+                  <label>Name da ferramenta</label>
                   <input
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                    value={nome}
-                    onChange={(e) => setNome(e.target.value)}
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                     required
                   />
                 </div>
@@ -61,8 +66,8 @@ const ModalAdd = ({ show, onClose, setTools }) => {
                   <label>Descrição</label>
                   <input
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                    value={descricao}
-                    onChange={(e) => setDescricao(e.target.value)}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                     required
                   />
                 </div>

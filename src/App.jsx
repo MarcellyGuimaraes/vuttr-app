@@ -39,7 +39,7 @@ function App() {
     <div className="grid h-5/6 bg-gray-200 place-items-center">
       <AppProvider>
         <Header
-          setTools={setTools}
+          // setTools={setTools}
           refresh={init}
           searchQuery={searchQuery}
           handleSearch={handleSearch}
