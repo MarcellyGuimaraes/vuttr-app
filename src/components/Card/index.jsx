@@ -21,14 +21,14 @@ const Card = ({ title, description, tags }) => {
       </div>
       <div>
         <p>{description}</p>
-        {/* {tags.map((tag) => (
+        {tags.map((tag) => (
           <span
             className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
             key={tag}
           >
             {tag}
           </span>
-        ))} */}
+        ))}
       </div>
       <ModalRemove name={title} show={show} onClose={() => setShow(false)} />
     </div>
