@@ -6,7 +6,7 @@ const Header = ({ searchQuery, handleSearch, setTools }) => {
   const [modal, setModal] = useState()
 
   return (
-    <div class>
+    <div>
       <div className="p-4">
         <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
           VU<span className="text-blue-700">TT</span>R

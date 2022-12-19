@@ -1,5 +1,6 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
+import api from './api'
+import AppProvider from './AppContext/Provider'
 import Card from './components/Card'
 import Header from './components/Header'
 
@@ -10,12 +11,11 @@ function App() {
 
   // Pegando dados do data.json
   const init = async () => {
-    await axios
-      .get(
-        'https://my-json-server.typicode.com/MarcellyGuimaraes/vuttr-app-api/tools',
-      )
-      .then((response) => {
-        setTools(response.data)
+    await api
+      .get('/tools')
+      .then((response) => setTools(response.data))
+      .catch((err) => {
+        console.error('ops! ocorreu um erro' + err)
       })
   }
   useEffect(() => {
@@ -37,38 +37,40 @@ function App() {
 
   return (
     <div className="grid h-5/6 bg-gray-200 place-items-center">
-      <Header
-        setTools={setTools}
-        refresh={init}
-        searchQuery={searchQuery}
-        handleSearch={handleSearch}
-      />
+      <AppProvider>
+        <Header
+          setTools={setTools}
+          refresh={init}
+          searchQuery={searchQuery}
+          handleSearch={handleSearch}
+        />
 
-      <div>
-        {searchQuery
-          ? filteredList.map((tool) => (
-              <Card
-                setTools={setTools}
-                refresh={init}
-                card_id={tool.id}
-                key={tool.id}
-                title={tool.title}
-                description={tool.description}
-                tags={tool.tags}
-              />
-            ))
-          : tools.map((tool) => (
-              <Card
-                setTools={setTools}
-                refresh={init}
-                card_id={tool.id}
-                key={tool.id}
-                title={tool.title}
-                description={tool.description}
-                tags={tool.tags}
-              />
-            ))}
-      </div>
+        <div>
+          {searchQuery
+            ? filteredList.map((tool) => (
+                <Card
+                  setTools={setTools}
+                  refresh={init}
+                  card_id={tool.id}
+                  key={tool.id}
+                  title={tool.title}
+                  description={tool.description}
+                  tags={tool.tags}
+                />
+              ))
+            : tools.map((tool) => (
+                <Card
+                  setTools={setTools}
+                  refresh={init}
+                  card_id={tool.id}
+                  key={tool.id}
+                  title={tool.title}
+                  description={tool.description}
+                  tags={tool.tags}
+                />
+              ))}
+        </div>
+      </AppProvider>
     </div>
   )
 }
