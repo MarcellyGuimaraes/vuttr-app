@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import AppContext from '../../AppContext/Context'
 
-const ModalAdd = ({ show, onClose, setTools }) => {
+const ModalAdd = ({ show, onClose }) => {
   if (!show) {
     return null
   }
@@ -16,17 +16,6 @@ const ModalAdd = ({ show, onClose, setTools }) => {
 
   const addItem = () => {
     addTool(newTool)
-    // setTools(
-    //   (prev) => [
-    //     ...prev,
-    //     {
-    //       title: name,
-    //       link: link,
-    //       description: description,
-    //       tags: tags.split(' '),
-    //     },
-    //   ],
-    //   )
     onClose()
   }
 

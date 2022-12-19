@@ -8,13 +8,12 @@ const AppProvider = ({ children }) => {
   useEffect(() => {
     fetchTools()
   }, [])
-  // react axios get method
+
   const fetchTools = async () => {
     const response = await api.get('/tools')
     setTools(response.data)
   }
 
-  // react axios post method
   const addTool = async (newTool) => {
     const response = await api.post('/tools', newTool)
     const data = response.data
@@ -22,7 +21,6 @@ const AppProvider = ({ children }) => {
     setTools([data, ...tools])
   }
 
-  // react axios delete method
   const deleteTool = (id) => {
     api.delete(`/tools/${id}`)
     setTools(tools.filter((tool) => tool.id !== id))
