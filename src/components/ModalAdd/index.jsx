@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import api from '../../api'
 
-const ModalAdd = ({ show, onClose }) => {
+const ModalAdd = ({ show, onClose, refresh }) => {
   if (!show) {
     return null
   }
@@ -20,6 +20,7 @@ const ModalAdd = ({ show, onClose }) => {
         tags: tags.split(' '),
       })
       .then(() => {
+        refresh()
         onClose()
       })
   }

@@ -32,7 +32,6 @@ function App() {
   return (
     <div className="grid h-5/6 bg-gray-200 place-items-center">
       <Header
-        setTools={setTools}
         refresh={init}
         searchQuery={searchQuery}
         handleSearch={handleSearch}
@@ -42,7 +41,6 @@ function App() {
         {searchQuery
           ? filteredList.map((tool) => (
               <Card
-                setTools={setTools}
                 refresh={init}
                 card_id={tool.id}
                 key={tool.id}
@@ -53,7 +51,6 @@ function App() {
             ))
           : tools.map((tool) => (
               <Card
-                setTools={setTools}
                 refresh={init}
                 card_id={tool.id}
                 key={tool.id}

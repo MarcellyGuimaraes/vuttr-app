@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import ModalAdd from '../ModalAdd'
 
-const Header = ({ searchQuery, handleSearch, setTools }) => {
+const Header = ({ searchQuery, handleSearch, refresh }) => {
   const [show, setShow] = useState(false)
   const [modal, setModal] = useState()
 
   return (
-    <div class>
+    <div>
       <div className="p-4">
         <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
           VU<span className="text-blue-700">TT</span>R
@@ -45,11 +45,7 @@ const Header = ({ searchQuery, handleSearch, setTools }) => {
         </button>
       </div>
 
-      <ModalAdd
-        setTools={setTools}
-        show={show}
-        onClose={() => setShow(false)}
-      />
+      <ModalAdd refresh={refresh} show={show} onClose={() => setShow(false)} />
     </div>
   )
 }
