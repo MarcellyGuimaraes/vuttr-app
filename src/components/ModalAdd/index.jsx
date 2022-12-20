@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react'
-import AppContext from '../AppContext/Context'
+import React, { useState } from 'react'
+import api from '../../api'
 
-const ModalAdd = ({ show, onClose }) => {
+const ModalAdd = ({ show, onClose, refresh }) => {
   if (!show) {
     return null
   }
@@ -10,13 +10,19 @@ const ModalAdd = ({ show, onClose }) => {
   const [description, setDescription] = useState('')
   const [link, setLink] = useState('')
   const [tags, setTags] = useState('')
-  const { addTool } = useContext(AppContext)
-
-  const newTool = { title, description, link, tags: tags.split(' ') }
 
   const addItem = () => {
-    addTool(newTool)
-    onClose()
+    api
+      .post('/tools', {
+        title: nome,
+        link: link,
+        description: descricao,
+        tags: tags.split(' '),
+      })
+      .then(() => {
+        refresh()
+        onClose()
+      })
   }
 
   return (

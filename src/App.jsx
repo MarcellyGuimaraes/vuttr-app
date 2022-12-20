@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import api from './api'
-import AppProvider from './components/AppContext/Provider'
 import Card from './components/Card'
 import Header from './components/Header'
 
@@ -32,35 +31,35 @@ function App() {
 
   return (
     <div className="grid h-5/6 bg-gray-200 place-items-center">
-      <AppProvider>
-        <Header
-          // setTools={setTools}r
-          refresh={init}
-          searchQuery={searchQuery}
-          handleSearch={handleSearch}
-        />
+      <Header
+        refresh={init}
+        searchQuery={searchQuery}
+        handleSearch={handleSearch}
+      />
 
-        <div>
-          {searchQuery
-            ? filteredList.map((tool) => (
-                <Card
-                  key={tool.id}
-                  title={tool.title}
-                  description={tool.description}
-                  tags={tool.tags}
-                />
-              ))
-            : tools.map((tool) => (
-                <Card
-                  id={tool.id}
-                  key={tool.id}
-                  title={tool.title}
-                  description={tool.description}
-                  tags={tool.tags}
-                />
-              ))}
-        </div>
-      </AppProvider>
+      <div>
+        {searchQuery
+          ? filteredList.map((tool) => (
+              <Card
+                refresh={init}
+                card_id={tool.id}
+                key={tool.id}
+                title={tool.title}
+                description={tool.description}
+                tags={tool.tags}
+              />
+            ))
+          : tools.map((tool) => (
+              <Card
+                refresh={init}
+                card_id={tool.id}
+                key={tool.id}
+                title={tool.title}
+                description={tool.description}
+                tags={tool.tags}
+              />
+            ))}
+      </div>
     </div>
   )
 }

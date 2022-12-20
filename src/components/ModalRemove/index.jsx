@@ -1,16 +1,16 @@
-import React, { useContext } from 'react'
-import AppContext from '../AppContext/Context'
+import React from 'react'
+import api from '../../api'
 
-const ModalRemove = ({ show, onClose, id, name }) => {
-  const { deleteTool } = useContext(AppContext)
-
+const ModalRemove = ({ show, onClose, id, name, refresh }) => {
   if (!show) {
     return null
   }
 
   const removeItem = () => {
-    deleteTool(id)
-    onClose()
+    api.delete(`/tools/${id}`).then(() => {
+      refresh()
+      onClose()
+    })
   }
 
   return (

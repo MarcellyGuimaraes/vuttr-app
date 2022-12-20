@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ModalRemove from '../ModalRemove'
 
-const Card = ({ title, description, tags, id }) => {
+const Card = ({ title, description, tags, card_id, refresh }) => {
   const [show, setShow] = useState(false)
   const [modal, setModal] = useState()
 
@@ -31,8 +31,9 @@ const Card = ({ title, description, tags, id }) => {
         ))}
       </div>
       <ModalRemove
+        refresh={refresh}
+        id={card_id}
         name={title}
-        id={id}
         show={show}
         onClose={() => setShow(false)}
       />
