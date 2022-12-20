@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+import api from '../../api'
 
-const ModalAdd = ({ show, onClose, setTools }) => {
+const ModalAdd = ({ show, onClose }) => {
   if (!show) {
     return null
   }
@@ -11,18 +12,16 @@ const ModalAdd = ({ show, onClose, setTools }) => {
   const [tags, setTags] = useState('')
 
   const addItem = () => {
-    setTools(
-      (prev) => [
-        ...prev,
-        {
-          title: nome,
-          link: link,
-          description: descricao,
-          tags: tags.split(' '),
-        },
-      ],
-      onClose(),
-    )
+    api
+      .post('/tools', {
+        title: nome,
+        link: link,
+        description: descricao,
+        tags: tags.split(' '),
+      })
+      .then(() => {
+        onClose()
+      })
   }
 
   return (

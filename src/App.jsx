@@ -1,5 +1,5 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
+import api from './api'
 import Card from './components/Card'
 import Header from './components/Header'
 
@@ -10,13 +10,7 @@ function App() {
 
   // Pegando dados do data.json
   const init = async () => {
-    await axios
-      .get(
-        'https://my-json-server.typicode.com/MarcellyGuimaraes/vuttr-app-api/tools',
-      )
-      .then((response) => {
-        setTools(response.data)
-      })
+    await api.get('/tools').then((response) => setTools(response.data))
   }
   useEffect(() => {
     init()

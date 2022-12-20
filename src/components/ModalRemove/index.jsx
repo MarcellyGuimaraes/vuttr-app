@@ -1,14 +1,15 @@
 import React from 'react'
+import api from '../../api'
 
-const ModalRemove = ({ show, onClose, id, name, setTools }) => {
+const ModalRemove = ({ show, onClose, id, name }) => {
   if (!show) {
     return null
   }
 
   const removeItem = () => {
-    setTools((prev) => prev.filter((x) => x.id !== id))
-    console.log(setTools)
-    onClose()
+    api.delete(`/tools/${id}`).then(() => {
+      onClose()
+    })
   }
 
   return (
