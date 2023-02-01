@@ -57,6 +57,7 @@ function App() {
                 title={tool.title}
                 description={tool.description}
                 tags={tool.tags}
+                link={tool.link}
               />
             ))
           : tools.map((tool) => (
@@ -67,6 +68,7 @@ function App() {
                 title={tool.title}
                 description={tool.description}
                 tags={tool.tags}
+                link={tool.link}
               />
             ))}
       </div>

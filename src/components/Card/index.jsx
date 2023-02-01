@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ModalRemove from '../ModalRemove'
 
-const Card = ({ title, description, tags, card_id, refresh }) => {
+const Card = ({ title, description, tags, card_id, refresh, link }) => {
   const [show, setShow] = useState(false)
   const [modal, setModal] = useState()
 
@@ -21,6 +21,17 @@ const Card = ({ title, description, tags, card_id, refresh }) => {
       </div>
       <div>
         <p>{description}</p>
+        <a
+          href={link}
+          className={`my-3 flex w-max flex-col rounded-md border-2 ${
+            link
+              ? 'border-sky-400 hover:bg-sky-400 hover:text-white'
+              : 'bg-slate-300 hover:cursor-not-allowed'
+          } bg-transparent p-2 text-black`}
+          target="_blank"
+        >
+          Ver Mais
+        </a>
         {tags.map((tag) => (
           <span
             className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
