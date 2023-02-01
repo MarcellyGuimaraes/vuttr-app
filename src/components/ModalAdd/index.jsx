@@ -15,21 +15,17 @@ const ModalAdd = ({ show, onClose, refresh }) => {
   const [tags, setTags] = useState('')
 
   const addItem = () => {
-    if (validator.isURL(link)) {
-      api
-        .post('/tools', {
-          title: nome,
-          link: link,
-          description: descricao,
-          tags: tags.split(' '),
-        })
-        .then(() => {
-          refresh()
-          onClose()
-        })
-    } else {
-      alert(`Insira uma url correta!`)
-    }
+    api
+      .post('/tools', {
+        title: nome,
+        link: link,
+        description: descricao,
+        tags: tags.split(' '),
+      })
+      .then(() => {
+        refresh()
+        onClose()
+      })
   }
 
   return (
