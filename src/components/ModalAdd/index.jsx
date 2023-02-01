@@ -8,23 +8,39 @@ const ModalAdd = ({ show, onClose, refresh }) => {
     return null
   }
 
-  const [nome, setNome] = useState('')
+  const [title, setTitle] = useState('')
   const [descricao, setDescricao] = useState('')
   const [link, setLink] = useState('')
   const [tags, setTags] = useState('')
 
+  function verificarUrl(url) {
+    if (
+      url.startsWith('https://') ||
+      url.startsWith('http://') ||
+      url.startsWith('www.')
+    ) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   const addItem = () => {
-    api
-      .post('/tools', {
-        title: nome,
-        link: link,
-        description: descricao,
-        tags: tags.split(' '),
-      })
-      .then(() => {
-        refresh()
-        onClose()
-      })
+    if (verificarUrl(link)) {
+      api
+        .post('/tools', {
+          title: title,
+          link: link,
+          description: descricao,
+          tags: tags.split(' '),
+        })
+        .then(() => {
+          refresh()
+          onClose()
+        })
+    } else {
+      alert('Insira uma url valida')
+    }
   }
 
   return (
@@ -36,26 +52,10 @@ const ModalAdd = ({ show, onClose, refresh }) => {
             Adicionar nova ferramenta
           </h3>
           <form className="space-y-6">
-            <Input
-              label="Título"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-            />
-            <Input
-              label="Link"
-              value={link}
-              onChange={(e) => setLink(e.target.value)}
-            />
-            <Input
-              label="Descrição"
-              value={descricao}
-              onChange={(e) => setDescricao(e.target.value)}
-            />
-            <Input
-              label="Tags"
-              value={tags}
-              onChange={(e) => setTags(e.target.value)}
-            />
+            <Input label="Título" value={title} setFunc={setTitle} />
+            <Input label="Link" value={link} setFunc={setLink} />
+            <Input label="Descrição" value={descricao} setFunc={setDescricao} />
+            <Input label="Tags" value={tags} setFunc={setTags} />
 
             <button
               data-modal-toggle="popup-modal"
