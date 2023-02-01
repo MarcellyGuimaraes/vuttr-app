@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import validator from 'validator'
 import api from '../../api'
 
 const ModalAdd = ({ show, onClose, refresh }) => {
@@ -12,18 +13,30 @@ const ModalAdd = ({ show, onClose, refresh }) => {
   const [tags, setTags] = useState('')
 
   const addItem = () => {
-    api
-      .post('/tools', {
-        title: nome,
-        link: link,
-        description: descricao,
-        tags: tags.split(' '),
-      })
-      .then(() => {
-        refresh()
-        onClose()
-      })
+    if (validator.isURL(link)) {
+      api
+        .post('/tools', {
+          title: nome,
+          link: link,
+          description: descricao,
+          tags: tags.split(' '),
+        })
+        .then(() => {
+          refresh()
+          onClose()
+        })
+    } else {
+      alert(`Insira uma url correta!`)
+    }
   }
+
+  // const validateEmail = (value) => {
+  //   if (validator.isURL(value)) {
+  //     setLink(value)
+  //   } else {
+  //     alert(`Insira uma url correta!`)
+  //   }
+  // }
 
   return (
     <>
